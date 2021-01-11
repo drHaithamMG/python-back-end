@@ -498,3 +498,5 @@ from typing import cast
 #     father_son.tall()
 # h=Son()
 # fs(h)
+# import sqlite3
+# db=sqlite3.connect('temp.db')
