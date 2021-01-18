@@ -1,0 +1,22 @@
+{%extends "movies/base.html"%} {%load static%} {% block movies %}
+<div class="container">
+  <div class="row">
+    {%for movie in movies%}
+    <div class="card" style="width: 18rem">
+      <img src="..." class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">{{movie.title}}</h5>
+        <p class="card-text">
+          Some quick example text to build on the card title and make up the
+          bulk of the card's content.
+        </p>
+        <a href="{{movie.link}}" class="btn btn-primary bg-danger"
+          >See movie details</a
+        >
+      </div>
+    </div>
+
+    {%endfor%}
+  </div>
+  {% endblock movies %}
+</div>
