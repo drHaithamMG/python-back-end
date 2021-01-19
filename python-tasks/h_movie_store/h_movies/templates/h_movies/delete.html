@@ -1,0 +1,63 @@
+{%extends "h_movies/base.html"%} {%load static%} {%block nav_button%}
+<a
+  href="{% url 'movie_edit' movie.id%}"
+  class="btn text-danger bg-light font-weight-bold"
+  ><i class="bi bi-pencil-square"></i> Edit this movie
+</a>
+{%endblock nav_button%} {% block movies %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item text-danger">
+      <a href="{% url 'home_page' %}" class="text-danger">Home</a>
+    </li>
+    <li class="breadcrumb-item text-danger">
+      <a href="{% url 'movie_details' movie.id%}" class="text-danger"
+        >Movie Details</a
+      >
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Deleteing movie</li>
+  </ol>
+</nav>
+<form method="POST">
+  {% csrf_token %}
+
+  <div class="card mb-3" style="width: 100%">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img
+          src="{{movie.pic}}"
+          class="card-img"
+          style="height: 400px"
+          alt="{{movie.name}}"
+        />
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">
+            Are you sure you want to remove
+            <strong class="text-danger">"{{movie.name}}"</strong> ?
+          </h5>
+          <br />
+          <div class="d-flex justify-content-center">
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <a
+                class="btn btn-outline-light btn-primary bg-success"
+                href="{% url 'movie_details' movie.id%}"
+              >
+                <i class="bi bi-hand-thumbs-down-fill"></i>
+                No
+              </a>
+              <button
+                type="submit"
+                class="btn btn-outline-light btn-primary bg-danger"
+              >
+                <i class="bi bi-hand-thumbs-up-fill"></i> Yes
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+{%endblock%}

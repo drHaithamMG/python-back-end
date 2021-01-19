@@ -1,0 +1,187 @@
+{%extends "h_movies/base.html"%} {%load static%} {% block movies %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item text-danger">
+      <a href="{% url 'home_page' %}" class="text-danger">Home</a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Adding movie</li>
+  </ol>
+</nav>
+{%if alert%}
+<div class="alert alert-danger" role="alert">{{alert}}</div>
+{%endif%}
+<form method="POST">
+  {% csrf_token %}
+  <div class="form-group row">
+    <label for="movie_name" class="col-sm-2 col-form-label"
+      >Title <span class="text-danger">*</span>:
+    </label>
+    <div class="col-sm-10">
+      <input
+        required
+        type="text"
+        class="form-control"
+        id="movie_name"
+        name="name"
+      />
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="movie_rate" class="col-sm-2 col-form-label">Rate : </label>
+    <div class="col-sm-10">
+      <input
+        type="number"
+        class="form-control"
+        id="movie_rate"
+        name="rate"
+        min="0"
+        value="0"
+      />
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="catagorie" class="col-sm-2 col-form-label"
+      >Catagorie <span class="text-danger">*</span>:
+    </label>
+    <div class="col-sm-10">
+      <input
+        required
+        type="text"
+        class="form-control"
+        id="catagorie"
+        name="catagorie"
+      />
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="production_date" class="col-sm-2 col-form-label"
+      >Production Date :
+    </label>
+    <div class="col-sm-10">
+      <input
+        type="date"
+        class="form-control"
+        id="production_date"
+        name="pdate"
+      />
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="pic_url" class="col-sm-2 col-form-label"
+      >Picture path/ url :
+    </label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="pic_url" name="picurl" />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="overview">Overview <span class="text-danger">*</span>:</label>
+    <textarea
+      required
+      class="form-control"
+      id="overview"
+      rows="3"
+      name="overview"
+    ></textarea>
+  </div>
+
+  <div class="form-group row">
+    <label for="price" class="col-sm-2 col-form-label"
+      >Price <span class="text-danger">*</span>:
+    </label>
+    <div class="col-sm-10">
+      <input
+        required
+        type="number"
+        class="form-control"
+        id="price"
+        name="price"
+        value="0"
+        min="0"
+      />
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="production_company" class="col-sm-2 col-form-label"
+      >Production Company <span class="text-danger">*</span>:
+    </label>
+    <div class="col-sm-10">
+      <input
+        required
+        type="text"
+        class="form-control"
+        id="production_company"
+        name="pcompany"
+      />
+    </div>
+  </div>
+  <div class="d-flex justify-content-start">
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <button
+        data-toggle="modal"
+        data-target="#staticBackdrop"
+        type="button"
+        class="btn btn-outline-light btn-primary bg-danger"
+      >
+        <i class="bi bi-x-circle-fill"></i>
+        Cancel
+      </button>
+      <button type="reset" class="btn btn-outline-light btn-primary bg-info">
+        <i class="bi bi-chevron-bar-left"></i>
+        Clear
+      </button>
+      <button
+        type="submit"
+        class="btn btn-outline-light btn-primary bg-success"
+      >
+        <i class="bi bi-check-circle-fill"></i>
+        Submit
+      </button>
+    </div>
+  </div>
+  <!-- alert -->
+  <div
+    class="modal fade"
+    id="staticBackdrop"
+    data-backdrop="static"
+    data-keyboard="false"
+    tabindex="-1"
+    aria-labelledby="staticBackdropLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Warning</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">Are you sure you want to cancel?</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            No
+          </button>
+          <a
+            href="{% url 'home_page'%}"
+            class="btn text-light bg-danger font-weight-bold"
+            >Yes</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<script>
+  document.getElementById("production_date").valueAsDate = new Date();
+</script>
+{%endblock%}

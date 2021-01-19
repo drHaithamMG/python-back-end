@@ -1,0 +1,68 @@
+{%extends "h_movies/base.html"%} {%load static%} {%block nav_button%}
+<a
+  href="{% url 'movie_edit' movie.id%}"
+  class="btn text-danger bg-light font-weight-bold"
+  ><i class="bi bi-pencil-square"></i> Edit this movie details</a
+>
+{%endblock nav_button%} {% block movies %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item text-danger">
+      <a href="{% url 'home_page' %}" class="text-danger">Home</a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Movie Details</li>
+  </ol>
+</nav>
+<div class="card mb-3" style="width: 100%">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img
+        src="{{movie.pic}}"
+        class="card-img"
+        style="height: 400px"
+        alt="{{movie.name}}"
+      />
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Movie name : {{movie.name}}</h5>
+        <p class="card-text">
+          Movie overview : <br />{{movie.movie_detail_id.overview}}
+        </p>
+        <p class="card-text">
+          <small class="text-muted"
+            >Catagorie : {{movie.movie_detail_id.catagorie}}</small
+          ><br />
+          <small class="text-muted"
+            >Production Company :
+            {{movie.movie_detail_id.production_company}}</small
+          ><br />
+          <small class="text-muted"
+            >Price : {{movie.movie_detail_id.price}}</small
+          ><br />
+          <small class="text-muted">Rate : {{movie.rate}}</small><br />
+          <small class="text-muted"
+            >Production Date : {{movie.production_date|date:"F j, Y"}}</small
+          ><br /><br />
+          <a
+            class="btn btn-primary btn-sm btn-outline-light btn-block bg-danger font-weight-bold"
+            href="{% url 'movie_edit' movie.id%}"
+            ><i class="bi bi-pencil-square"></i>
+            Edit - {{movie.name}}
+          </a>
+          <a
+            btn
+            btn-outline-light
+            btn-primary
+            bg-info
+            class="btn btn-sm btn-block btn-outline-light btn-primary bg-info font-weight-bold"
+            href="{% url 'movie_delete' movie.id%}"
+            ><i class="bi bi-trash-fill"></i>
+            Remove - {{movie.name}}
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{%endblock%}

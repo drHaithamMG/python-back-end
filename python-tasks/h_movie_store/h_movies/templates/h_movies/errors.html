@@ -1,0 +1,13 @@
+{%extends "h_movies/base.html"%} {%load static%} {% block movies %}
+<div class="card mb-3">
+  <img
+    src="{% static 'h_movies/assets/400.png' %}"
+    class="card-img-top"
+    alt="{{title}}"
+  />
+  <div class="card-body">
+    <h5 class="card-title">{{title}}</h5>
+    <p class="card-text">{{message}}</p>
+  </div>
+  {%endblock movies%}
+</div>

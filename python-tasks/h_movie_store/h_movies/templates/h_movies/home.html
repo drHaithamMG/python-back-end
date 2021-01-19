@@ -1,0 +1,41 @@
+{%extends "h_movies/base.html"%} {%load static%} {%block nav_button%}
+<a href="{% url 'movie_new'%}" class="btn text-danger bg-light font-weight-bold"
+  ><i class="bi bi-plus-circle-fill"></i> Add new movie</a
+>
+{%endblock nav_button%} {% block movies %}
+ {% if messages %} {% for message in messages %}
+<div class="alert alert-success alert-dismissible fade show">
+  <strong>Announcment!</strong> {{message}}
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+</div>
+{% endfor %} {% endif %}
+<div class="container">
+  <div class="row row-cols-1 row-cols-md-3">
+    {%for movie in movies%}
+    <div class="card" style="width: 18rem">
+      <img
+        src="{{movie.pic}}"
+        style="height: 400px"
+        class="card-img-top"
+        alt="{{movie.name}}"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{movie.name}}</h5>
+        <p class="card-text">
+          <small class="text-muted">Rate : {{movie.rate}}</small><br />
+          <small class="text-muted"
+            >Production Date : {{movie.production_date|date:"F j, Y"}}</small
+          >
+        </p>
+        <a
+          href="{% url 'movie_details' movie.id %}"
+          class="btn btn-primary btn-sm btn-outline-light btn-block bg-danger font-weight-bold"
+          ><i class="bi bi-book-fill"></i> See movie details</a
+        >
+      </div>
+    </div>
+
+    {%endfor%}
+  </div>
+  {% endblock movies %}
+</div>
