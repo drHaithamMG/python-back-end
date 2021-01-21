@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = ')+6%%yrc5%v_yo2+v#vv^f=)_*4o1)mf_c$+jvs$xydre^ce7q'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 if DEBUG is False:
     ALLOWED_HOSTS = [
@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'h_movies.apps.HMoviesConfig'
+    'h_movies.apps.HMoviesConfig',
+    'h_movies_api.apps.HMoviesApiConfig'
 ]
 
 MIDDLEWARE = [

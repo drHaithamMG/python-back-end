@@ -2,6 +2,7 @@ from django.db import models
 from django.db import models
 import uuid
 
+
 class Movies(models.Model):
     id = models.UUIDField(primary_key=True,
                           default=uuid.uuid4, editable=False, auto_created=True)
@@ -14,14 +15,8 @@ class Movies(models.Model):
     movie_detail_id = models.ForeignKey(
         'MovieDetails', on_delete=models.CASCADE)
 
-    # def __str__(self):
-    #     return self.name
-
-    # def __eq__(self, o: object) -> bool:
-    #     if self.name == o.name and self.production_date == o.production_date and self.rate == o.rate and self.pic == o.pic:
-    #         return True
-    #     else:
-    #         return False
+    def __str__(self):
+        return self.name
 
 
 class MovieDetails(models.Model):
@@ -34,8 +29,6 @@ class MovieDetails(models.Model):
     create_date = models.DateTimeField(auto_now_add=True)
     update_date = models.DateTimeField(auto_now=True)
 
-    # def __eq__(self, o: object) -> bool:
-    #     if self.catagorie == o.catagorie and self.production_company == o.production_company and self.price == o.price and self.overview == o.overview:
-    #         return True
-    #     else:
-    #         return False
+    def __str__(self):
+        self.movie = Movies.objects.get(movie_detail_id_id=self.id)
+        return f'{self.movie.name} details'

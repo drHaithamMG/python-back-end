@@ -2,11 +2,12 @@
 <a href="{% url 'movie_new'%}" class="btn text-danger bg-light font-weight-bold"
   ><i class="bi bi-plus-circle-fill"></i> Add new movie</a
 >
-{%endblock nav_button%} {% block movies %}
- {% if messages %} {% for message in messages %}
+{%endblock nav_button%} {% block movies %} {% if messages %} {% for message in messages %}
 <div class="alert alert-success alert-dismissible fade show">
-  <strong>Announcment!</strong> {{message}}
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Announcment!</strong> <br />{{message}}
+  <button type="button" class="close" data-dismiss="alert">
+    <i class="bi bi-x-circle-fill"></i>
+  </button>
 </div>
 {% endfor %} {% endif %}
 <div class="container">
