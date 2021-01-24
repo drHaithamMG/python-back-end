@@ -1,17 +1,21 @@
 from fastapi import HTTPException
 from pydantic import UUID4
-from . import movies_api
+from fastapi import APIRouter
+from src.models.pydantic.movies import Movie, MovieOut, CustomeMessages
+from src.models.pydantic.movie_details import MovieDetails, MovieDetailsOut
+movies_router = APIRouter()
+
 # routs
 
 
-@movies_api.get('/api/1/movies_list')
+@movies_router.get('/api/movies', tags=["movies"])
 async def get_all():
     """Get all movies from database"""
     pass
 
 
-@movies_api.get('/api/1/movies/{movie_uuid}')
-async def get_movie(movie_uuid:UUID4):
+@movies_router.get('/api/movies/{movie_uuid}', tags=["movies"])
+async def get_movie(movie_uuid: UUID4):
     """Get a specific movie passed on movie's uuid"""
     # try:
 
@@ -20,24 +24,26 @@ async def get_movie(movie_uuid:UUID4):
     pass
 
 
-@movies_api.post('/api/1/movies/')
-async def add_movie():
+@movies_router.post('/api/movies/', response_model=MovieOut, tags=["movies"])
+async def add_movie(movie: Movie):
     """Add a new movie"""
     pass
 
 
-@movies_api.delete('/api/1/movies/{movie_uuid}')
-async def remove_movie(movie_uuid:UUID4):
+@movies_router.delete('/api/movies/{movie_uuid}', response_model=CustomeMessages, tags=["movies"])
+async def remove_movie(movie_uuid: UUID4):
     """Remove a movie passed on movie's uuid"""
     # try:
 
     # except:
     #     raise HTTPException(status_code=404,detail='Movie not found')
+
+    # return CustomeMessages('Movie has been successfully deleted')
     pass
 
 
-@movies_api.put('/api/1/movies/{movie_uuid}')
-async def edit_movie(movie_uuid:UUID4):
+@movies_router.patch('/api/movies/{movie_uuid}', response_model=MovieOut, tags=["movies"])
+async def edit_movie(movie_uuid: UUID4):
     """Edit movie passed on movie's uuid"""
     # try:
 
