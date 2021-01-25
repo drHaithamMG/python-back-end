@@ -8,6 +8,7 @@ fastapi = {extras = ["all"], version = "*"}
 tortoise-orm = "*"
 sqlalchemy = "*"
 python-dotenv = "*"
+alembic = "*"
 
 [dev-packages]
 autopep8 = "*"

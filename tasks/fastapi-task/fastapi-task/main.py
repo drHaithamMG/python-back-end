@@ -1,5 +1,4 @@
-from fastapi import FastAPI, HTTPException
-from pydantic import UUID4
+from fastapi import FastAPI
 from src.controller.movie_controller import movies_router
 from src.controller.movie_details_controller import movie_details_router
 

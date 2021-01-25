@@ -2,16 +2,13 @@ from fastapi import HTTPException
 from pydantic import UUID4
 from fastapi import APIRouter
 from src.models.pydantic.movies import Movie, MovieOut, CustomeMessages
-from src.models.pydantic.movie_details import MovieDetails, MovieDetailsOut
+from src.models.movies import MoviesSQL
 movies_router = APIRouter()
-
-# routs
-
 
 @movies_router.get('/api/movies', tags=["movies"])
 async def get_all():
-    """Get all movies from database"""
-    pass
+    """Get all movies from the database"""
+    return MoviesSQL
 
 
 @movies_router.get('/api/movies/{movie_uuid}', tags=["movies"])
